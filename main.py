@@ -40,7 +40,7 @@ videos = load_videos()
 #C (Videos List)
 
 def generate_buttons():
-    c = types.InlineKeyboardMarkup(row_width=1)
+    c = types.InlineKeyboardMarkup(row_width=3)
     for name in videos:
         btn = types.InlineKeyboardButton(text=name, callback_data=name)
         c.add(btn)
