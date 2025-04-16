@@ -6,7 +6,7 @@ bot = TeleBot("7635023321:AAExemYzc8D6JnG5u0C-EbQDsrqL_M52W7c")
 
 #X
 
-b = types.InlineKeyboardMarkup(row_width=4)
+b = types.InlineKeyboardMarkup(row_width=1)
 back = types.InlineKeyboardButton(text="X", url="https://t.me/ueoot")
 b.add(back)
 
@@ -36,7 +36,7 @@ videos = load_videos()
 #C (Videos List)
 
 def generate_buttons():
-    c = types.InlineKeyboardMarkup(row_width=1)
+    c = types.InlineKeyboardMarkup(row_width=4)
     for name in videos:
         btn = types.InlineKeyboardButton(text=name, callback_data=name)
         c.add(btn)
