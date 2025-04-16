@@ -60,31 +60,31 @@ def is_subscribed(user_id):
 @bot.message_handler(commands=["start"])
 def start(message):
     if not is_subscribed(message.from_user.id):
-        bot.send_message(message.chat.id, f"You need to join {JOIN_LINK} first, then /start.")
+        bot.send_message(message.chat.id, f"You need to join {JOIN_LINK} first, then /start.",protect_content=True)
         return
-    bot.reply_to(message, "Hi! Here you can find your dream.", reply_markup=b)
+    bot.reply_to(message, "Hi! Here you can find your dream.", reply_markup=b,protect_content=True)
 
 #show
 
 @bot.message_handler(commands=["show"])
 def show(message):
     if not is_subscribed(message.from_user.id):
-        bot.send_message(message.chat.id, f"You need to join {JOIN_LINK} first, then /start.")
+        bot.send_message(message.chat.id, f"You need to join {JOIN_LINK} first, then /start.",protect_content=True)
         return
     c = generate_buttons()
-    bot.reply_to(message, "Choose your favorite :", reply_markup=c)
+    bot.reply_to(message, "Choose your favorite :", reply_markup=c,protect_content=True)
 
 #button
 
 @bot.callback_query_handler(func=lambda call: True)
 def query(call):
     if not is_subscribed(call.from_user.id):
-        bot.send_message(call.message.chat.id, f"You need to join {JOIN_LINK} first, then /start.")
+        bot.send_message(call.message.chat.id, f"You need to join {JOIN_LINK} first, then /start.",protect_content=True)
         return
     name = call.data
     if name in videos:
         url = videos[name]
         caption = f"{name} | sex scene."
-        bot.send_video(call.message.chat.id, url, caption=caption, reply_markup=b)
+        bot.send_video(call.message.chat.id, url, caption=caption, reply_markup=b,protect_content=True)
 
 bot.polling()
