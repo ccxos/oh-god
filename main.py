@@ -1,7 +1,7 @@
 from telebot import TeleBot, types
 import requests
 
-bot = TeleBot("7674803240:AAFXDUFLNnOhss_qODL815DMlCebdncEMis")
+bot = TeleBot("8142403647:AAHfJjncTAphNkJn-6YahCmWqpRKfTriBMg")
 
 #X
 
