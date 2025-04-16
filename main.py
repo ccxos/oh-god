@@ -6,7 +6,7 @@ bot = TeleBot("7635023321:AAExemYzc8D6JnG5u0C-EbQDsrqL_M52W7c")
 
 #X
 
-b = types.InlineKeyboardMarkup(row_width=1)
+b = types.InlineKeyboardMarkup(row_width=4)
 back = types.InlineKeyboardButton(text="X", url="https://t.me/ueoot")
 b.add(back)
 
