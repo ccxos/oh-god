@@ -17,6 +17,7 @@ JOIN_LINK = "https://t.me/+21tmta-dfkJlZmUx"
 #GITHUB TXT RAW
 
 GITHUB_RAW_URL = "https://raw.githubusercontent.com/ccxos/oh-god/refs/heads/main/videos.txt"
+pnURL = "https://raw.githubusercontent.com/ccxos/oh-god/refs/heads/main/p0rn.txt"
 
 #Load videos from GitHub once
 
@@ -74,6 +75,18 @@ def show(message):
     c = generate_buttons()
     bot.reply_to(message, "Choose your favorite :", reply_markup=c,protect_content=True)
 
+#p0rn
+
+@bot.message_handler(commands=["p0rn"])
+def show(message):
+	if not is_subscribed(message.from_user.id):
+	       bot.send_message(message.chat.id, f"You need to join {JOIN_LINK} first, then /start.",protect_content=True)
+	       return
+	       vids = load_videos(pnURL)
+	       u = generate_buttons(vids)
+	       bot.reply_to(message, "Choose your favorite :", reply_markup=u,protect_content=True)
+
+
 #button
 
 @bot.callback_query_handler(func=lambda call: True)
@@ -81,10 +94,12 @@ def query(call):
     if not is_subscribed(call.from_user.id):
         bot.send_message(call.message.chat.id, f"You need to join {JOIN_LINK} first, then /start.",protect_content=True)
         return
-    name = call.data
-    if name in videos:
-        url = videos[name]
-        caption = f"{name} | sex scene."
-        bot.send_video(call.message.chat.id, url, caption=caption, reply_markup=b,protect_content=True)
+        name = call.data
+        all_vids = {**load_videos(GITHUB_RAW_URL), **load_videos(pnURL)}
+        if name in all_vids:
+        	url = all_vids[name]
+        	caption = f"{name} | sex scene."
+        	bot.send_video(call.message.chat.id, url
+        	,caption=caption, reply_markup=b,protect_content=True)
 
 bot.polling()
